@@ -3,11 +3,12 @@ import { HeaderComponent } from '../header/header.component';
 
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-principal',
   templateUrl: './principal.component.html',
-  imports: [RouterLink, CommonModule,HeaderComponent],
+  imports: [RouterLink, CommonModule,HeaderComponent,FooterComponent],
   styleUrls: ['./principal.component.css']
 })
 export class PrincipalComponent implements AfterViewInit {

@@ -1,0 +1,102 @@
+footer {
+    background: #1B357E;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #ffffff;
+}
+
+nav#social ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+nav#social li {
+    margin-right: 10px;
+    margin-left: 0;
+    margin-bottom: 5px;
+}
+
+nav#social li:not(:first-child) {
+    margin-left: 10px;
+}
+
+span.redesociais {
+    color: #ffffff;
+    margin-right: 10px;
+    font-size: 1em;
+    white-space: nowrap;
+}
+
+nav#social ul img {
+    width: 28px;
+    
+    display: block;
+}
+
+.footer-ford-logo {
+    width: 70px;
+    height: auto;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    footer {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 15px;
+    }
+
+    nav#social {
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    nav#social ul {
+        justify-content: center;
+    }
+    nav#social li {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    footer {
+        padding: 15px 10px;
+    }
+
+    span.redesociais {
+        display: block;
+        margin-bottom: 10px;
+        margin-right: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    nav#social ul {
+        flex-direction: row;
+        justify-content: center;
+    }
+    nav#social li.redesociais-text-container {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    nav#social li {
+        margin-bottom: 0;
+    }
+
+    nav#social ul img {
+        width: 26px;
+    }
+
+    .footer-ford-logo {
+        width: 60px;
+    }
+}
