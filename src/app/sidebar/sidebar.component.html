@@ -1,0 +1,35 @@
+
+<button class="btn btn-primary m-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
+  aria-controls="sidebar">
+  <i class="bi bi-list"></i> Menu
+</button>
+
+
+<div class="offcanvas offcanvas-start text-bg-light d-flex flex-column" tabindex="-1" id="sidebar"
+  aria-labelledby="sidebarLabel">
+
+  
+  <div class="offcanvas-header">
+    <img src="http://localhost:4200/img/ford.png" alt="Logo Ford" class="logo-ford">
+    <button type="button" class="btn-close btn-close-dark" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+  </div>
+
+  
+  <div class="offcanvas-body d-flex flex-column justify-content-between">
+    <ul class="nav flex-column gap-3">
+      <li class="nav-item">
+        <a class="nav-link link-primary fw-semibold" [routerLink]="['/home']"><i class="bi bi-house-door-fill me-2 fs-5"></i> Home </a>
+        
+      </li>
+      <li class="nav-item">
+        <a class="nav-link link-primary fw-semibold" [routerLink]="['/dashboard']"><i class="bi bi-bar-chart-fill me-2 fs-5"></i> Dashboard</a>
+      </li>
+    </ul>
+
+    
+    <div class="mt-5">
+      <button class="btn btn-danger w-100" [routerLink]="['/login']"><i class="bi bi-box-arrow-right me-2 fs-5"></i> Logout</button>
+    </div>
+  </div>
+</div>
+
