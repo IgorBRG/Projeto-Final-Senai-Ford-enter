@@ -1,81 +1,63 @@
-header {
-    background: #FFFFFF;
-    border-bottom: 1px solid #ccc;
-    padding: 10px 30px;
+.header {
+    background-color: #ffffff;
+    padding: 0 25px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    justify-content: space-between;
+    border-bottom: 1px solid #e0e0e0;
+    height: 70px;
 }
 
-header .logo {
-    width: 150px;
+.logo {
+    max-width: 140px;
     height: auto;
     display: block;
 }
 
-header nav ul {
-    display: flex;
+.nav-list {
     list-style: none;
+    display: flex;
+    align-items: center;
     margin: 0;
     padding: 0;
 }
 
-header nav li {
-    list-style: none;
-    margin-left: 20px;
-}
-
-header nav li:first-child {
-    margin-left: 0;
-}
-
-header nav a {
-    color: #1351d8;
-    font-size: 18px;
+.nav-link {
     text-decoration: none;
-    font-weight: 400;
+    color: #001f5b;
+    font-weight: 600;
+    padding: 10px 15px;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 4px;
+    margin-left: 5px;
 }
 
-header nav a:hover {
-    color: #1b357e;
-    text-decoration: underline;
+.nav-link:hover {
+    background-color: #e9effd;
+    color: #0033a0;
 }
 
 @media (max-width: 768px) {
-    header {
+    .header {
         flex-direction: column;
+        height: auto;
         padding: 15px;
-        text-align: center;
     }
-
-    header .logo {
-        width: 120px;
+    .logo {
         margin-bottom: 15px;
     }
-
-    header nav ul {
+    .nav-list {
         flex-direction: column;
-        align-items: center;
+        width: 100%;
     }
-
-    header nav li {
+    .nav-link {
+        padding: 12px;
         margin-left: 0;
-        margin-bottom: 12px;
+        margin-bottom: 5px;
+        width: 100%;
+        text-align: center;
     }
-    header nav li:last-child {
+    .nav-link:last-child {
         margin-bottom: 0;
-    }
-    header nav a {
-        font-size: 17px;
-    }
-}
-
-@media (max-width: 480px) {
-    header .logo {
-        width: 100px;
-    }
-    header nav a {
-        font-size: 16px;
     }
 }
