@@ -7,35 +7,74 @@
 
 
 .main-content-area {
-    flex-grow: 1; 
+    flex: 1;
     padding: 30px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.main-content-area {
-    flex-grow: 20px; 
-    
-    padding: 30px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.carousel-section {
+.carousel-section-wrapper {
     width: 100%;
-    max-width: 1100px;
-    text-align: center;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.carousel-interactive-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+div#carousel {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 div#carousel ::ng-deep a,
 div#carousel ::ng-deep img {
     width: 100%;
-    max-width: 850px;
+    max-width: 750px;
     border-radius: 8px;
     display: block;
-    margin: 0 auto 15px auto;
+    margin: 0 auto;
+}
+
+.carousel-button {
+    background-color: rgba(50, 50, 50, 0.4);
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    z-index: 10;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.carousel-button:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.carousel-button.prev {
+    margin-right: 15px;
+}
+
+.carousel-button.next {
+    margin-left: 15px;
 }
 
 div#carousel-title {
@@ -58,12 +97,32 @@ div#carousel-title a:hover {
 
 @media (max-width: 768px) {
     .main-content-area {
-        padding: 20px 15px;
+        padding: 20px 10px;
     }
+
     div#carousel ::ng-deep img {
-        margin-bottom: 10px;
+        max-width: calc(100% - 100px);
     }
+    .carousel-button {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        padding: 8px;
+    }
+    .carousel-button.prev {
+        margin-right: 8px;
+    }
+    .carousel-button.next {
+        margin-left: 8px;
+    }
+
     div#carousel-title {
         font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    div#carousel ::ng-deep img {
+        max-width: 100%;
     }
 }

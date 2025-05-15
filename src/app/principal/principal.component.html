@@ -1,10 +1,14 @@
 <app-header></app-header>
 <main class="main-content-area">
-  <section class="carousel-section">
-    <div id="carousel">
-      </div>
+  <section class="carousel-section-wrapper">
+    <div class="carousel-interactive-area">
+        <button aria-label="Anterior" class="carousel-button prev" (click)="previousItem()">&#10094;</button>
+        <div id="carousel">
+        </div>
+        <button aria-label="Próximo" class="carousel-button next" (click)="nextItem()">&#10095;</button>
+    </div>
     <div id="carousel-title">
-      </div>
+    </div>
   </section>
 </main>
 <app-footer></app-footer>
