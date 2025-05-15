@@ -3,11 +3,17 @@
   <section class="carousel-section-wrapper">
     <div class="carousel-interactive-area">
         <button aria-label="Anterior" class="carousel-button prev" (click)="previousItem()">&#10094;</button>
-        <div id="carousel">
+        <div id="carousel" *ngIf="currentItem"> 
+          <a [routerLink]="currentItem.url">
+            <img [src]="getImageUrl(currentItem.image)" [alt]="currentItem.title" />
+          </a>
         </div>
         <button aria-label="Próximo" class="carousel-button next" (click)="nextItem()">&#10095;</button>
     </div>
-    <div id="carousel-title">
+    <div id="carousel-title" *ngIf="currentItem"> 
+      <a [routerLink]="currentItem.url">
+        {{ currentItem.title }}
+      </a>
     </div>
   </section>
 </main>

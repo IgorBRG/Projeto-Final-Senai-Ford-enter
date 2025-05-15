@@ -1,31 +1,52 @@
-import { Component, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core'; 
+import { Router, RouterLink } from '@angular/router'; 
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 
+interface CarouselItem {
+  image: string;
+  title: string;
+  url: string;
+}
+
 @Component({
   selector: 'app-principal',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, FooterComponent],
+  imports: [CommonModule, RouterLink, HeaderComponent, FooterComponent], 
   templateUrl: './principal.component.html',
-  styleUrls: ['./principal.component.css']
+  styleUrls: ['./principal.component.css'],
+  animations: [
+    
+
+  ], 
+
 })
-export class PrincipalComponent implements AfterViewInit, OnDestroy {
-  carouselArr = [
+export class PrincipalComponent implements OnInit, OnDestroy {
+  carouselArr: CarouselItem[] = [
     { image: 'imagem_1.jpg', title: 'Esta é a nova Ranger Ford 2022. Verifique novidades.', url: '/lancamento' },
     { image: 'imagem_2.jpg', title: 'Ford a nossa história', url: '/lancamento' },
     { image: 'imagem_3.jpg', title: 'Nova Ford Bronco Sport 2022', url: '/lancamento' }
   ];
   currentIndex = 0;
+  currentItem: CarouselItem | undefined; 
   private intervalId: any;
 
-  ngAfterViewInit(): void {
-    this.updateCarousel();
+
+
+  ngOnInit(): void { 
+    this.setCurrentItem();
     this.startAutoPlay();
   }
 
   ngOnDestroy(): void {
     this.clearAutoPlay();
+  }
+
+  setCurrentItem(): void {
+    if (this.carouselArr.length > 0) {
+      this.currentItem = this.carouselArr[this.currentIndex];
+    }
   }
 
   startAutoPlay(): void {
@@ -42,28 +63,9 @@ export class PrincipalComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  updateCarousel(): void {
-    if (this.carouselArr.length === 0) return;
-
-    const carouselElement = document.getElementById('carousel');
-    const titleElement = document.getElementById('carousel-title');
-
-    if (carouselElement && titleElement) {
-      const currentItem = this.carouselArr[this.currentIndex];
-      carouselElement.innerHTML = `
-        <a routerLink="${currentItem.url}">
-          <img src="http://localhost:4200/img/${currentItem.image}" alt="${currentItem.title}" />
-        </a>`;
-      titleElement.innerHTML = `
-        <a routerLink="${currentItem.url}">
-          ${currentItem.title}
-        </a>`;
-    }
-  }
-
   private advanceCarousel(isAutoPlay: boolean = false): void {
     this.currentIndex = (this.currentIndex + 1) % this.carouselArr.length;
-    this.updateCarousel();
+    this.setCurrentItem(); 
     if (!isAutoPlay) {
       this.startAutoPlay();
     }
@@ -75,7 +77,13 @@ export class PrincipalComponent implements AfterViewInit, OnDestroy {
 
   previousItem(): void {
     this.currentIndex = (this.currentIndex - 1 + this.carouselArr.length) % this.carouselArr.length;
-    this.updateCarousel();
+    this.setCurrentItem(); 
     this.startAutoPlay();
+  }
+
+  
+  getImageUrl(imageName: string | undefined): string {
+    if (!imageName) return ''; 
+    return `http://localhost:4200/img/${imageName}`;
   }
 }
