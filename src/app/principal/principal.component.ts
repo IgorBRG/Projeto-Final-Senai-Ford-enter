@@ -1,26 +1,26 @@
-import { Component, OnInit, OnDestroy } from '@angular/core'; 
-import { Router, RouterLink } from '@angular/router'; 
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
+import { trigger, transition, style, animate } from '@angular/animations';
+import { CarouselItem } from '../interfaces/carousel-item';
 
-interface CarouselItem {
-  image: string;
-  title: string;
-  url: string;
-}
 
 @Component({
   selector: 'app-principal',
   standalone: true,
-  imports: [CommonModule, RouterLink, HeaderComponent, FooterComponent], 
+  imports: [CommonModule, RouterLink, HeaderComponent, FooterComponent],
   templateUrl: './principal.component.html',
   styleUrls: ['./principal.component.css'],
   animations: [
-    
-
-  ], 
-
+    trigger('fadeTransition', [
+      transition('* <=> *', [
+        style({ opacity: 0 }),
+        animate('600ms ease-in-out', style({ opacity: 1 }))
+      ])
+    ])
+  ]
 })
 export class PrincipalComponent implements OnInit, OnDestroy {
   carouselArr: CarouselItem[] = [
@@ -29,12 +29,12 @@ export class PrincipalComponent implements OnInit, OnDestroy {
     { image: 'imagem_3.jpg', title: 'Nova Ford Bronco Sport 2022', url: '/lancamento' }
   ];
   currentIndex = 0;
-  currentItem: CarouselItem | undefined; 
+  currentItem: CarouselItem | undefined;
   private intervalId: any;
 
+  constructor() {}
 
-
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.setCurrentItem();
     this.startAutoPlay();
   }
@@ -65,7 +65,7 @@ export class PrincipalComponent implements OnInit, OnDestroy {
 
   private advanceCarousel(isAutoPlay: boolean = false): void {
     this.currentIndex = (this.currentIndex + 1) % this.carouselArr.length;
-    this.setCurrentItem(); 
+    this.setCurrentItem();
     if (!isAutoPlay) {
       this.startAutoPlay();
     }
@@ -77,13 +77,12 @@ export class PrincipalComponent implements OnInit, OnDestroy {
 
   previousItem(): void {
     this.currentIndex = (this.currentIndex - 1 + this.carouselArr.length) % this.carouselArr.length;
-    this.setCurrentItem(); 
+    this.setCurrentItem();
     this.startAutoPlay();
   }
 
-  
   getImageUrl(imageName: string | undefined): string {
-    if (!imageName) return ''; 
+    if (!imageName) return '';
     return `http://localhost:4200/img/${imageName}`;
   }
 }

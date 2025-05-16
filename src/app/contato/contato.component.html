@@ -1,1 +1,78 @@
-<p>contato works!</p>
+<app-header></app-header>
+<main class="contact-main">
+  <div class="contact-wrapper">
+    <div class="contact-image-container">
+      <img src="http://localhost:4200/img/xls 2.2 diesel.jpg" alt="Ford Ranger">
+    </div>
+    <div class="contact-form-container">
+      <h2 class="form-title">Sobre Você</h2>
+      <form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)">
+        <input type="text" name="nome" placeholder="NOME*" class="form-input-field"
+               [(ngModel)]="contactData.nome" required #nome="ngModel">
+        <div *ngIf="nome.invalid && (nome.dirty || nome.touched || isFormSubmitted)" class="validation-error">
+          <small *ngIf="nome.errors?.['required']">Nome é obrigatório.</small>
+        </div>
+
+        <input type="email" name="email" placeholder="E-MAIL*" class="form-input-field"
+               [(ngModel)]="contactData.email" required email #email="ngModel">
+        <div *ngIf="email.invalid && (email.dirty || email.touched || isFormSubmitted)" class="validation-error">
+          <small *ngIf="email.errors?.['required']">E-mail é obrigatório.</small>
+          <small *ngIf="email.errors?.['email']">E-mail inválido.</small>
+        </div>
+
+        <input type="text" name="cpf" placeholder="CPF*" class="form-input-field"
+               [(ngModel)]="contactData.cpf" required #cpf="ngModel"
+               mask="000.000.000-00">
+        <div *ngIf="cpf.invalid && (cpf.dirty || cpf.touched || isFormSubmitted)" class="validation-error">
+          <small *ngIf="cpf.errors?.['required']">CPF é obrigatório.</small>
+        </div>
+
+        <input type="text" name="sobrenome" placeholder="SOBRENOME*" class="form-input-field"
+               [(ngModel)]="contactData.sobrenome" required #sobrenome="ngModel">
+        <div *ngIf="sobrenome.invalid && (sobrenome.dirty || sobrenome.touched || isFormSubmitted)" class="validation-error">
+            <small *ngIf="sobrenome.errors?.['required']">Sobrenome é obrigatório.</small>
+        </div>
+
+        <input type="text" name="telefone" placeholder="TELEFONE*" class="form-input-field"
+               [(ngModel)]="contactData.telefone" required #telefone="ngModel"
+               mask="(00) 00000-0000 || (00) 0000-0000">
+        <div *ngIf="telefone.invalid && (telefone.dirty || telefone.touched || isFormSubmitted)" class="validation-error">
+          <small *ngIf="telefone.errors?.['required']">Telefone é obrigatório.</small>
+        </div>
+
+        <select name="tipoContato" class="form-select-field" [(ngModel)]="contactData.tipoContato" required #tipoContato="ngModel">
+          <option value="COMO DESEJA SER CONTATADO" disabled>COMO DESEJA SER CONTATADO*</option>
+          <option value="TELEFONE">TELEFONE</option>
+          <option value="E-MAIL">E-MAIL</option>
+        </select>
+        <div *ngIf="tipoContato.invalid && tipoContato.value === 'COMO DESEJA SER CONTATADO' && (tipoContato.dirty || tipoContato.touched || isFormSubmitted)" class="validation-error">
+            <small>Selecione como deseja ser contatado.</small>
+        </div>
+
+        <p class="terms-text">Os dados serão mantidos em nossa base de dados, só enquanto for desejado por você. <br> A
+          qualquer momento, será possível editar ou remover tais dados.</p>
+
+        <div class="checkbox-container">
+          <label class="checkbox-label-item">
+            <input type="checkbox" name="aceiteTermos" [(ngModel)]="contactData.aceiteTermos" required #aceiteTermos="ngModel">
+            Sim. Li e concordo com os <a href="https://www.ford.com.br/politica-de-privacidade/" target="_blank">Termos e Condições</a>.
+          </label>
+          <div *ngIf="aceiteTermos.invalid && !contactData.aceiteTermos && isFormSubmitted" class="validation-error">
+            <small>Você precisa aceitar os termos.</small>
+          </div>
+
+          <label class="checkbox-label-item">
+            <input type="checkbox" name="receberNovidades" [(ngModel)]="contactData.receberNovidades">
+            Sim. Também quero receber descontos e novidades.
+          </label>
+        </div>
+
+        <div class="submit-button-container">
+          <button type="submit" class="submit-btn"
+                  [disabled]="!contactForm.form.valid || !contactData.aceiteTermos">Enviar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+<app-footer></app-footer>

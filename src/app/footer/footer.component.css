@@ -11,18 +11,42 @@
 .social {
     display: flex;
     align-items: center;
-    gap: 10px;
+    
 }
 
 .social-text {
     font-weight: 600;
-    margin-right: 5px;
+    margin-right: 10px;
 }
 
-.social-icon-link img {
-    width: 24px;
-    height: 24px;
-    display: block;
+.social-icon-link {
+    display: inline-block;
+    margin: 0 8px;
+    transition: transform 0.3s ease;
+    vertical-align: middle;
+}
+
+.social-icon-link i {
+    font-size: 24px;
+    color: white;
+    transition: color 0.3s ease;
+    display: inline-block;
+}
+
+.social-icon-link:hover {
+    transform: scale(1.25);
+}
+
+.social-icon-link:hover .bi-facebook {
+    color: #1877F2;
+}
+
+.social-icon-link:hover .bi-instagram {
+    color: #E4405F;
+}
+
+.social-icon-link:hover .bi-youtube {
+    color: #FF0000;
 }
 
 .copyright {

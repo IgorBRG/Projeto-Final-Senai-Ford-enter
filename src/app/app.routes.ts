@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PrincipalComponent } from './principal/principal.component';
 import { LancamentoComponent } from './lancamento/lancamento.component';
+import { ContatoComponent } from './contato/contato.component';
 
 
 export const routes: Routes = [
@@ -34,5 +35,9 @@ export const routes: Routes = [
     {
         path: 'lancamento',
         component: LancamentoComponent
+    },
+    {
+        path: 'contato',
+        component: ContatoComponent
     }
 ];

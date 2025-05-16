@@ -1,11 +1,77 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule, NgForm } from '@angular/forms';
+import { HeaderComponent } from '../header/header.component';
+import { FooterComponent } from '../footer/footer.component';
+import { ContactFormData } from '../interfaces/contato';
+
+
 
 @Component({
   selector: 'app-contato',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, FormsModule, HeaderComponent, FooterComponent],
   templateUrl: './contato.component.html',
-  styleUrl: './contato.component.css'
+  styleUrls: ['./contato.component.css']
 })
-export class ContatoComponent {
+export class ContatoComponent implements OnInit {
+  contactData: ContactFormData = {
+    nome: '',
+    sobrenome: '',
+    email: '',
+    cpf: '',
+    telefone: '',
+    tipoContato: 'COMO DESEJA SER CONTATADO',
+    aceiteTermos: false,
+    receberNovidades: false
+  };
 
+  isFormSubmitted: boolean = false;
+
+  constructor() { }
+
+  ngOnInit(): void { }
+
+  onSubmit(form: NgForm): void {
+    this.isFormSubmitted = true;
+
+    if (form.invalid || !this.contactData.aceiteTermos) {
+      alert('Por favor, preencha todos os campos obrigatórios e aceite os termos.');
+      return;
+    }
+
+    let cpfLimpo = this.contactData.cpf.replace(/\D/g, '');
+    let telefoneLimpo = this.contactData.telefone.replace(/\D/g, '');
+
+    if (cpfLimpo.length !== 11) {
+      alert("Por favor, insira um CPF válido com 11 dígitos.");
+      return;
+    }
+
+    if (telefoneLimpo.length < 10 || telefoneLimpo.length > 11) {
+      alert("Por favor, insira um telefone válido com DDD (10 ou 11 dígitos).");
+      return;
+    }
+
+    const dataToSend = {
+      ...this.contactData,
+      cpf: cpfLimpo,
+      telefone: telefoneLimpo
+    };
+
+    console.log("Dados do Formulário para Envio:", dataToSend);
+    alert(`Obrigado sr(a) ${this.contactData.nome}, seus dados foram encaminhados com sucesso!`);
+
+    form.resetForm({
+        nome: '',
+        sobrenome: '',
+        email: '',
+        cpf: '',
+        telefone: '',
+        tipoContato: 'COMO DESEJA SER CONTATADO',
+        aceiteTermos: false,
+        receberNovidades: false
+    });
+    this.isFormSubmitted = false;
+  }
 }
