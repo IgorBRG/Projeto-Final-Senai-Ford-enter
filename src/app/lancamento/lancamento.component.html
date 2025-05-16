@@ -1,2 +1,76 @@
 <app-header></app-header>
+
+<main class="lancamento-main-content">
+  <section class="video-section">
+    <iframe class="video-player"
+            src="https://www.youtube-nocookie.com/embed/vQsryuNmsL0?controls=0&autoplay=1&modestbranding=0&loop=1&mute=1&rel=0&hd=1"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+    </iframe>
+  </section>
+
+  <section class="description-section">
+    <p class="product-description">A Ford apresenta sua nova Ranger 2022, um modelo ainda mais potente e conectado da picape que conquistou o Brasil com sua força. Com design mais sofisticado, tecnologia de ponta e mais segurança, o modelo promete suprir todas as necessidades dos consumidores que buscam um veículo forte e moderno.</p>
+  </section>
+
+  <section class="car-selection-section">
+    <ul class="car-list">
+      <li *ngFor="let car of availableCars" class="car-item">
+        <img [src]="formatImageUrl(car.image)" [alt]="car.nome" class="car-photo">
+        <div class="car-info-block">
+          <div class="car-selection">
+            <input type="checkbox" class="car-checkbox"
+                   [id]="'checkbox-' + car.id"
+                   [(ngModel)]="car.selected"
+                   (ngModelChange)="handleCarSelection(car)">
+            <label [for]="'checkbox-' + car.id" class="checkbox-label"></label>
+          </div>
+          <div class="car-details">
+            <span class="car-model-name">{{ car.nome }}</span>
+            <span class="car-price">{{ formatPrice(car.preco) }}</span>
+          </div>
+          <div class="car-info-icon">
+             <img src="http://localhost:4200/img/info.png" alt="Mais informações">
+          </div>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section class="compare-action-section">
+    <button type="button" class="compare-button" (click)="showComparison()">Comparar Carros</button>
+  </section>
+
+  <section class="comparison-table-section" *ngIf="isCompareTableVisible && carsToCompare.length === maxCompareLimit">
+    <div class="comparison-table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Característica</th>
+            <th>
+            <img [src]="formatImageUrl(carsToCompare[0].image)" [alt]="carsToCompare[0].nome" class="table-car-image">
+          </th>
+          <th>
+            <img [src]="formatImageUrl(carsToCompare[1].image)" [alt]="carsToCompare[1].nome" class="table-car-image">
+          </th>  
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let detail of comparisonDetails">
+            <td>{{ detail.label }}</td>
+            <td>{{ getCarDetail(carsToCompare[0], detail.key, detail.unit) }}</td>
+            <td>{{ getCarDetail(carsToCompare[1], detail.key, detail.unit) }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="close-compare-button-container">
+        <button type="button" class="close-compare-button" (click)="hideComparison()">Fechar</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
 <app-footer></app-footer>
