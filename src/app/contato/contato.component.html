@@ -20,12 +20,15 @@
           <small *ngIf="email.errors?.['email']">E-mail inválido.</small>
         </div>
 
+
         <input type="text" name="cpf" placeholder="CPF*" class="form-input-field"
                [(ngModel)]="contactData.cpf" required #cpf="ngModel"
                mask="000.000.000-00">
         <div *ngIf="cpf.invalid && (cpf.dirty || cpf.touched || isFormSubmitted)" class="validation-error">
           <small *ngIf="cpf.errors?.['required']">CPF é obrigatório.</small>
         </div>
+        
+        
 
         <input type="text" name="sobrenome" placeholder="SOBRENOME*" class="form-input-field"
                [(ngModel)]="contactData.sobrenome" required #sobrenome="ngModel">
@@ -35,7 +38,7 @@
 
         <input type="text" name="telefone" placeholder="TELEFONE*" class="form-input-field"
                [(ngModel)]="contactData.telefone" required #telefone="ngModel"
-               mask="(00) 00000-0000 || (00) 0000-0000">
+               mask="(00) 00000-0000">
         <div *ngIf="telefone.invalid && (telefone.dirty || telefone.touched || isFormSubmitted)" class="validation-error">
           <small *ngIf="telefone.errors?.['required']">Telefone é obrigatório.</small>
         </div>
