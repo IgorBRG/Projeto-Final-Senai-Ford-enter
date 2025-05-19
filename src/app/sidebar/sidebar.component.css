@@ -1,3 +1,7 @@
+#sidebar.offcanvas.show {
+  overflow: visible !important;
+}
+
 .logo-ford {
   width: 120px;
   height: auto;
@@ -13,4 +17,47 @@
   background-color: #e2e6ea;
   color: #0d6efd;
   text-decoration: none;
+}
+
+.dashboard-item-container {
+  position: relative;
+}
+
+.dashboard-tooltip {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 10px;
+  margin-top: 5px;
+  min-width: 180px;
+  max-width: 240px;
+  width: calc(100% - 20px);
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1056;
+  font-size: 0.85rem;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.dashboard-tooltip p {
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-tooltip ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-tooltip li {
+  margin-bottom: 0.25rem;
+}
+
+.dashboard-item-container:hover .dashboard-tooltip {
+  display: block;
 }
