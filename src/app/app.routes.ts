@@ -5,39 +5,42 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PrincipalComponent } from './principal/principal.component';
 import { LancamentoComponent } from './lancamento/lancamento.component';
 import { ContatoComponent } from './contato/contato.component';
-
+import { authGuard } from './auth.guard';
 
 export const routes: Routes = [
     {
-        path: '',
-        redirectTo: 'principal',
-        pathMatch: 'full'
+    path: '',
+    redirectTo: 'principal',
+    pathMatch: 'full',
     },
     {
-        path: 'login',
-        component: LoginComponent   
+    path: 'login',
+    component: LoginComponent,
     },
     {
-        path: 'home',
-        component: HomeComponent
-
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [authGuard],
     },
     {
     path: 'dashboard',
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate: [authGuard],
     },
-    {
+    {  
     path: 'principal',
-    component: PrincipalComponent
-
-    },
-
-    {
-        path: 'lancamento',
-        component: LancamentoComponent
+    component: PrincipalComponent,
     },
     {
-        path: 'contato',
-        component: ContatoComponent
-    }
+    path: 'lancamento',
+    component: LancamentoComponent,
+    },
+    {   
+    path: 'contato',
+    component: ContatoComponent,
+    },
+    {
+    path: '**',
+    redirectTo: 'principal',
+    },
 ];

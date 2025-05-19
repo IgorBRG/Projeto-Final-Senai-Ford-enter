@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Login } from './interfaces/Login.component';
+import { CredenciaisLogin } from './interfaces/credenciais-login';
 import { Vehicle, SelectedVehicleData } from './interfaces/Dashboard.component';
 
 @Injectable({
@@ -12,8 +13,8 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  login(user: Login[]): Observable<Login[]> {
-    return this.http.post<Login[]>(`${this.baseUrl}/login`, user);
+  login(credenciais: CredenciaisLogin): Observable<Login> {
+    return this.http.post<Login>(`${this.baseUrl}/login`, credenciais);
   }
 
   getVehicles(): Observable<{ vehicles: Vehicle[] }> {

@@ -28,7 +28,9 @@
 
     
     <div class="mt-5">
-      <button class="btn btn-danger w-100" [routerLink]="['/login']"><i class="bi bi-box-arrow-right me-2 fs-5"></i> Logout</button>
+      <button class="btn btn-danger w-100" (click)="efetuarLogout()">
+        <i class="bi bi-box-arrow-right me-2 fs-5"></i> Logout
+      </button>
     </div>
   </div>
 </div>

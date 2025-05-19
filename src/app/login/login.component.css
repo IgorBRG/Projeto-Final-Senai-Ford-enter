@@ -50,3 +50,24 @@ button.btn:hover {
 .text-danger {
   font-size: 0.9rem;
 }
+
+.btn-primary {
+    background-color: #0033a0;
+    border-color: #0033a0;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: #001f5b;
+    border-color: #001f5b;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}

@@ -1,45 +1,46 @@
-<body>
-  <div class="container-fluid vh-100">
-    <div class="row h-100">
-      <div class="col-md-6 d-none d-md-flex align-items-center justify-content-center">
-  <img class="img-fluid" src="http://localhost:4200/img/ranger.png" alt="carro ford" style="max-height: 70%; margin-bottom: 40px;">
-      </div>
-      <div class="col-md-6 d-flex aling-items-center justify-content-center bg-light">
-        <div class="w-75">
-          <div class="text-center mb-4 p-5">
-            <img src="http://localhost:4200/img/ford.png" alt="" style="width: 100px;">
-            <h2 class="text-success mt-3">Boas-Vindas</h2>
+<div class="container-fluid vh-100">
+  <div class="row h-100">
+    <div class="col-md-6 d-none d-md-flex align-items-center justify-content-center">
+      <img class="img-fluid" src="http://localhost:4200/img/ranger.png" alt="carro ford" style="max-height: 70%; margin-bottom: 40px;">
+    </div>
+    <div class="col-md-6 d-flex align-items-center justify-content-center bg-light">
+      <div class="w-75" style="max-width: 400px;">
+        <div class="text-center mb-4 p-md-5 p-3">
+          <img src="http://localhost:4200/img/ford.png" alt="Ford Logo" style="width: 100px;">
+          <h2 class="mt-3" style="color: #0033a0;">Boas-Vindas</h2>
+        </div>
+        <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
+          <div class="form-floating mb-3 position-relative">
+            <input type="text" required class="form-control" id="usuario" name="usuario" placeholder="Usuário"
+                   [(ngModel)]="loginData.usuario" #usuario="ngModel">
+            <label for="usuario">Insira seu Usuário</label>
+            <i class="bi bi-person position-absolute top-50 end-0 translate-middle-y me-3 text-muted"></i>
           </div>
-          <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm.value)">
-            <div class="form-floating mb-3 position-relative">
-              <input type= "text" required #usuario="ngModel" class="form-control" id="usuario" name="usuario" placeholder="Usuário" ngModel>
-              <label for="usuario">Insira seu Usuário</label>
-              <i class="bi bi-person position-absolute top-50 end-0 translate-middle-y me-3 text-muted"></i>
-  
-            </div>
-            <div class="form-floating mb-3 position-relative">
-              <input required #senha="ngModel" type="password" class="form-control" id="senha" name="senha" placeholder="Senha" ngModel>
-              <label for="senha">Insira sua Senha</label>
-              <i class="bi bi-lock position-absolute top-50 end-0 translate-middle-y me-3 text-muted"></i>
-            </div>
-            <div class=" form-check form-switch mb-3">
-              <input type="checkbox" class="form-check-input" id="lembrar">
-              <label for="lembrar">Logar automaticamente</label>
-            </div>
-            <button class="btn btn-secondary w-100 "[disabled]="loginForm.invalid">Entrar</button>
-  
-          </form>
-          <div *ngIf="mensagemDeErro" class="text-danger mt-2 text-center">
-            {{ mensagemDeErro }}
+          <div *ngIf="usuario.invalid && (usuario.dirty || usuario.touched)" class="text-danger small mb-2">
+            <small *ngIf="usuario.errors?.['required']">Usuário é obrigatório.</small>
           </div>
+
+          <div class="form-floating mb-3 position-relative">
+            <input required type="password" class="form-control" id="senha" name="senha" placeholder="Senha"
+                   [(ngModel)]="loginData.senha" #senha="ngModel">
+            <label for="senha">Insira sua Senha</label>
+            <i class="bi bi-lock position-absolute top-50 end-0 translate-middle-y me-3 text-muted"></i>
+          </div>
+          <div *ngIf="senha.invalid && (senha.dirty || senha.touched)" class="text-danger small mb-2">
+            <small *ngIf="senha.errors?.['required']">Senha é obrigatória.</small>
+          </div>
+
+          <div class="form-check form-switch mb-3">
+            <input type="checkbox" class="form-check-input" id="lembrar" name="lembrar"
+                   [(ngModel)]="lembrarMe">
+            <label class="form-check-label" for="lembrar">Logar automaticamente</label>
+          </div>
+          <button type="submit" class="btn btn-primary w-100" [disabled]="loginForm.invalid">Entrar</button>
+        </form>
+        <div *ngIf="mensagemDeErro" class="alert alert-danger mt-3 text-center">
+          {{ mensagemDeErro }}
         </div>
       </div>
     </div>
   </div>
-  
-</body>
-
-
-
-
-
+</div>

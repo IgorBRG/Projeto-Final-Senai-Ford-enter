@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../api.service';
+import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-sidebar',
   imports: [CommonModule, FormsModule, RouterLink],
@@ -12,6 +13,13 @@ import { ApiService } from '../api.service';
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router, 
+    public authService: AuthService
+  ) {}
 
+  efetuarLogout(): void {
+    console.log('SidebarComponent: Método efetuarLogout() FOI CHAMADO.'); 
+    this.authService.logout();
+  }
 }
