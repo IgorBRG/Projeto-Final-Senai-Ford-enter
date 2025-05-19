@@ -1,25 +1,135 @@
-
-  
-.home-container {
-  height: 100vh;
-  background: url('http://localhost:4200/img/ranger.png') no-repeat center center;
-  background-size: 75%;
-  background-color: #ffffff;
-  background-position: center center;
-  background-repeat: no-repeat;
+:host {
   display: flex;
-  justify-content: center;
+  flex-grow: 1;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+app-sidebar {
+  flex-shrink: 0;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 10; 
+}
+
+.page-content-with-html-bg {
+  flex-grow: 1;
+  position: relative; 
+  height: 100%;
+  overflow: hidden; 
+}
+
+.html-background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; 
+  object-position: center center;
+  z-index: 1; 
+  
+}
+
+.content-overlay-container {
+  position: relative; 
+  z-index: 2; 
+  width: 100%;
+  height: 100%;
+  display: flex;
   align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto; 
 }
 
 .welcome-card {
-  width: 450px;
-  height: 250px; 
-  background-color: rgba(255, 255, 255, 0.88);
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 6px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
-  text-align: left;
-  backdrop-filter: blur(3px);
+  background-color: rgba(255, 255, 255, 0.92); 
+  padding: 35px 45px;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 550px;
+  width: auto;
+  min-width: 300px;
+}
+
+.welcome-subtitle {
+  color: #5a6a7d;
+  margin-bottom: 0.75rem;
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.welcome-hr {
+  margin-top: 0.75rem;
+  margin-bottom: 1.75rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.welcome-title {
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: #001f5b;
+}
+
+.welcome-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.welcome-message {
+  font-size: 1.1rem;
+  color: #343a40;
+  line-height: 1.65;
+  margin-top: 15px;
+  font-weight: 400;
+}
+
+@media (max-width: 992px) {
+  .welcome-card {
+    max-width: 500px;
+    padding: 30px 35px;
+  }
+  .welcome-title {
+    font-size: 1.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .content-overlay-container {
+    padding: 15px;
+  }
+  .welcome-card {
+    width: 90%;
+    max-width: 450px;
+    padding: 25px 30px;
+  }
+  .welcome-title {
+    font-size: 1.7rem;
+  }
+  .welcome-message, .welcome-subtitle {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .welcome-title {
+    font-size: 1.5rem;
+  }
+   .welcome-subtitle {
+    font-size: 0.95rem;
+  }
+  .welcome-message {
+    font-size: 0.95rem;
+  }
+  .welcome-card {
+    padding: 20px 25px;
+    width: 95%;
+  }
 }
