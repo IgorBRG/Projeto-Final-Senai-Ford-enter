@@ -9,7 +9,7 @@ import { Vehicle, SelectedVehicleData } from './interfaces/Dashboard.component';
   providedIn: 'root'
 })
 export class ApiService {
-  private baseUrl = 'http://localhost:3001';
+  private baseUrl = 'https://api-ford-enter.onrender.com';
 
   constructor(private http: HttpClient) {}
 
