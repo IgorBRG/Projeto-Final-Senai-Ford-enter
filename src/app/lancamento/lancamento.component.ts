@@ -68,8 +68,8 @@ export class LancamentoComponent implements OnInit {
   }
 
   formatImageUrl(imageName: string | undefined): string {
-    if (!imageName) return 'http://localhost:4200/img/placeholder.png';
-    return `http://localhost:4200/img/${imageName}`;
+    if (!imageName) return 'https://api-ford-enter.onrender.com/placeholder.png';
+    return `https://api-ford-enter.onrender.com/img/${imageName}`;
   }
 
   formatPrice(price: number | undefined): string {
