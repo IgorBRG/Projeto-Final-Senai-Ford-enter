@@ -121,7 +121,7 @@ export class PrincipalComponent implements OnInit, OnDestroy {
 
   getImageUrl(imageName: string | undefined): string {
     if (!imageName) return '';
-    return `https://api-ford-enter.onrender.com/${imageName}`;
+    return `https://api-ford-enter.onrender.com/img/${imageName}`;
   }
 
   onImageEnter(): void {
