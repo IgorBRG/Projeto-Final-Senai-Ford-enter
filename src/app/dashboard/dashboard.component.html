@@ -1,36 +1,41 @@
-<app-sidebar></app-sidebar>
+<app-sidebar style="background: #f4f6f9;"></app-sidebar>
 <div class="dashboard-content-wrapper">
   <div class="container dashboard-main-container py-3">
-    <h2 class="text-center text-primary mb-4 fw-bold">Dashboard FORD</h2>
 
-    <div class="row mb-4 justify-content-center">
-      <div class="col-md-6 col-lg-4">
-        <label for="selectVehicle" class="form-label fw-semibold">Veículo</label>
-        <select id="selectVehicle" [(ngModel)]="selectedId" (change)="onSelectChange()" class="form-select form-select-lg">
-          <option [value]="''" disabled selected>Selecione um veículo</option>
-          <option *ngFor="let vehicle of vehicles" [value]="vehicle.id">{{ vehicle.vehicle }}</option>
-        </select>
+    <div class="dashboard-header-zone">
+      <h2 class="text-center text-primary mb-3 fw-bold"><i class="bi bi-bar-chart-steps me-2"></i>Dashboard FORD</h2>
+      <p class="text-center text-muted mb-4">
+        Selecione um veículo abaixo para explorar dados de vendas, conectividade e atualizações.
+      </p>
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-5"> 
+          <label for="selectVehicle" class="form-label fw-semibold visually-hidden">Veículo</label> 
+          <select id="selectVehicle" [(ngModel)]="selectedId" (change)="onSelectChange()" class="form-select form-select-lg">
+            <option [value]="''" disabled selected>Selecione um veículo...</option>
+            <option *ngFor="let vehicle of vehicles" [value]="vehicle.id">{{ vehicle.vehicle }}</option>
+          </select>
+        </div>
       </div>
     </div>
 
     <div *ngIf="selectedVehicleFromSelect" class="row text-center mb-4 g-3">
       <div class="col-sm-6 col-md-4">
         <div class="info-card shadow-sm">
-          <h6 class="info-card-title">Total de Vendas</h6>
+          <h6 class="info-card-title"><i class="bi bi-bar-chart-line me-2"></i>Total de Vendas</h6>
           <h4 class="info-card-value text-primary">{{ selectedVehicleFromSelect.volumetotal }}</h4>
           <small class="info-card-unit">Unid.</small>
         </div>
       </div>
       <div class="col-sm-6 col-md-4">
         <div class="info-card shadow-sm">
-          <h6 class="info-card-title">Conectados</h6>
+          <h6 class="info-card-title"><i class="bi bi-wifi me-2"></i>Conectados</h6>
           <h4 class="info-card-value text-primary">{{ selectedVehicleFromSelect.connected }}</h4>
           <small class="info-card-unit">Unid.</small>
         </div>
       </div>
       <div class="col-sm-12 col-md-4">
         <div class="info-card shadow-sm">
-          <h6 class="info-card-title">Atualizações de Software</h6>
+          <h6 class="info-card-title"><i class="bi bi-cloud-arrow-down-fill me-2"></i>Atualizações de Software</h6>
           <h4 class="info-card-value text-primary">{{ selectedVehicleFromSelect.softwareUpdates }}</h4>
           <small class="info-card-unit">Unid.</small>
         </div>
@@ -43,8 +48,8 @@
   </div>
 
   <div class="fixed-bottom-bar">
-    <div class="container-fluid py-2"> 
-      <div class="table-responsive"> 
+    <div class="container py-2">
+      <div class="table-responsive">
         <table class="table table-bordered table-hover table-striped text-center align-middle mb-0 data-table">
           <thead class="table-header-azul">
             <tr>
@@ -59,9 +64,9 @@
           <tbody>
             <tr>
               <td class="p-2 vin-search-cell">
-                <div class="input-group input-group-sm"> 
+                <div class="input-group input-group-sm">
                   <input [(ngModel)]="searchVin" class="form-control shadow-sm" placeholder="Digite o VIN" />
-                  <button class="btn btn-primary" (click)="searchByVin()">Buscar</button> 
+                  <button class="btn btn-primary" (click)="searchByVin()">Buscar</button>
                 </div>
               </td>
               <td>
