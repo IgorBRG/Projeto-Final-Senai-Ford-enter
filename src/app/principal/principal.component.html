@@ -10,24 +10,31 @@
              (mouseleave)="onImageLeave()">
           <a [routerLink]="currentItem.url">
             <img [src]="getImageUrl(currentItem.image)" [alt]="currentItem.title" />
+            <div class="carousel-text-overlay">
+              <h2 class="carousel-overlay-title">{{ currentItem.title }}</h2>
+              <p class="carousel-overlay-subtitle" *ngIf="currentItem.subtitle">{{ currentItem.subtitle }}</p>
+            </div>
           </a>
         </div>
         <button aria-label="Próximo" class="carousel-button next" (click)="nextItem()">&#10095;</button>
     </div>
-    <div id="carousel-title-wrapper"
-         (mouseenter)="onTitleEnter()"
-         (mouseleave)="onTitleLeave()">
-      <div id="carousel-title"
-           *ngIf="currentItem"
-           [@carouselImageTransition]="currentIndex.toString()">
-        <a [routerLink]="currentItem.url">
-          {{ currentItem.title }}
-        </a>
-      </div>
-      <div class="title-hover-tooltip" *ngIf="showTitleTooltip && currentItem?.tooltipText" @fadeTransition>
-        <p>{{ currentItem?.tooltipText }}</p>
-      </div>
+
+    <div class="carousel-dots" *ngIf="carouselArr.length > 0">
+      <span *ngFor="let item of carouselArr; let i = index"
+            class="dot"
+            [class.active]="i === currentIndex"
+            (click)="goToItem(i)"></span>
     </div>
   </section>
+
+  <section class="ford-info-section" @fadeTransition>
+    <div class="ford-info-content">
+      <h2 class="ford-info-title">Explore Nossa Plataforma</h2>
+      <p class="ford-info-text">
+        Bem-vindo à nossa plataforma interativa Ford! Aqui você pode mergulhar nos detalhes dos nossos últimos lançamentos, comparar modelos lado a lado e visualizar dados e estatísticas importantes dos veículos. Utilize nosso dashboard para informações consolidadas ou entre em contato conosco para um atendimento personalizado. Tudo pensado para sua melhor experiência Ford.
+      </p>
+    </div>
+  </section>
+
 </main>
 <app-footer></app-footer>

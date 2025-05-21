@@ -26,7 +26,7 @@ app-sidebar {
 .dashboard-main-container {
   flex-grow: 1;
   padding: 1rem 1.5rem;
-  padding-bottom: 140px;
+  padding-bottom: 140px; 
   width: 100%;
 }
 
@@ -60,6 +60,10 @@ input.form-control {
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   text-align: center;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  height: 100%; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .info-card:hover {
@@ -104,19 +108,22 @@ input.form-control {
 
 .fixed-bottom-bar {
   position: absolute;
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
   bottom: 0;
   left: 0;
   right: 0;
   z-index: 1020;
-  
+  background-color: #ffffff; 
+  border-top: 1px solid #ffffff; 
   
 }
 
-.fixed-bottom-bar .container-fluid {
+.fixed-bottom-bar .container { 
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+  width: 100%; 
+  max-width: 100%; 
 }
 
 .table th, .table td {
@@ -126,7 +133,7 @@ input.form-control {
 }
 
 .table-header-azul {
-  background-color: #0d6efd;
+  background-color: #0033a0; 
   color: #fff;
   font-weight: 600;
 }
@@ -137,6 +144,7 @@ input.form-control {
 
 .data-table {
   margin-bottom: 0 !important;
+  
 }
 
 .vin-search-cell .input-group {
@@ -145,28 +153,64 @@ input.form-control {
 
 .vin-search-cell .form-control-sm {
   font-size: 0.85rem;
-  border-right: none;
+  
 }
 .vin-search-cell .form-control-sm:focus {
-  border-color: #0d6efd;
-  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  border-color: #0033a0; 
+  box-shadow: 0 0 0 0.25rem rgba(0, 51, 160, 0.25); 
 }
 
 .vin-search-cell .btn-sm {
   font-size: 0.85rem;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+  
+  
+}
+
+
+@media (max-width: 992px) {
+  .dashboard-main-container {
+    padding-bottom: 160px; 
+  }
+  .info-card {
+    padding: 1rem 0.75rem;
+  }
+  .info-card-value {
+    font-size: 1.75rem;
+  }
+  .info-card-title {
+    font-size: 0.85rem;
+  }
+  .vehicle-image {
+    max-height: 300px;
+  }
+  .table th, .table td {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+  .data-table {
+     min-width: 650px; 
+  }
 }
 
 @media (max-width: 768px) {
   .dashboard-main-container {
     padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 180px;
+    padding-bottom: 180px; 
   }
 
   .info-card {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem; 
+    padding: 1rem 0.5rem;
+  }
+   .info-card-value {
+    font-size: 1.6rem;
+  }
+  .info-card-title {
+    font-size: 0.8rem;
+  }
+   .vehicle-image {
+    max-height: 250px;
   }
 
   .vin-search-cell .input-group {
@@ -176,9 +220,16 @@ input.form-control {
 
   .data-table th,
   .data-table td {
-    white-space: nowrap;
+    white-space: normal; 
+    font-size: 0.85rem; 
+    padding: 0.45rem;
   }
-  .fixed-bottom-bar .container-fluid {
+
+  .data-table {
+     min-width: 550px; 
+  }
+
+  .fixed-bottom-bar .container {
     padding-left: 10px;
     padding-right: 10px;
   }
@@ -189,26 +240,49 @@ input.form-control {
     font-size: 1.5rem;
     margin-bottom: 1.5rem !important;
   }
+  .form-select-lg { 
+    font-size: 0.9rem;
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+  }
   .info-card-value {
-    font-size: 1.5rem;
+    font-size: 1.4rem; 
+  }
+   .info-card-title {
+    font-size: 0.75rem;
+  }
+  .info-card-unit {
+    font-size: 0.7rem;
   }
   .vehicle-image {
-    max-height: 250px;
+    max-height: 180px; 
   }
-   .table th, .table td {
-    font-size: 0.85rem;
-    padding: 0.4rem;
+  .table th, .table td {
+    font-size: 0.75rem; 
+    padding: 0.3rem;
+  }
+  .table-header-azul i { 
+    display: none;
   }
   .vin-search-cell .input-group {
     flex-direction: column;
+    gap: 0.5rem; 
   }
-  .vin-search-cell .form-control-sm {
+  .vin-search-cell .form-control-sm { 
     border-radius: .2rem !important;
-    margin-bottom: .5rem;
-    border-right: 1px solid #0d6efd;
+    
+    border-right: 1px solid #ced4da !important; 
+    font-size: 0.8rem;
   }
-  .vin-search-cell .btn-sm {
+  .vin-search-cell .btn-sm { 
     width: 100%;
     border-radius: .2rem !important;
+    font-size: 0.8rem;
+  }
+  .dashboard-main-container {
+    padding-bottom: 210px; 
+  }
+  .data-table {
+    min-width: 100%; 
   }
 }

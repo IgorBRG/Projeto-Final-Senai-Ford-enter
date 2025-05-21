@@ -87,6 +87,12 @@
     height: 20px;
     cursor: pointer;
 }
+
+.car-checkbox:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
 .checkbox-label {
     margin-left: 5px;
 }
@@ -139,63 +145,119 @@
     background-color: #001f5b;
 }
 
-.comparison-table-section {
-    width: 100%;
-    max-width: 1000px;
-    margin-top: 20px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-}
-.comparison-table-container {
-    overflow-x: auto;
+.compare-button:disabled {
+  background-color: #a0b4d4;
+  cursor: not-allowed;
+  opacity: 0.7;
 }
 
-.comparison-table-section table {
-    width: 100%;
-    border-collapse: collapse;
-    font-weight: 400;
+.modal.show.d-block {
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
-.comparison-table-section th,
-.comparison-table-section td {
-    border: 1px solid #e0e0e0;
-    padding: 10px 12px;
-    text-align: left;
-    vertical-align: middle;
-    font-size: 0.9rem;
+.modal-content {
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 5px 15px rgba(0,0,0,.5);
+  background-color: #fff;
 }
 
-.comparison-table-section th {
-    background-color: #f0f0f0;
-    font-weight: 600;
-    text-align: center;
-}
-.comparison-table-section tbody tr:nth-child(odd) {
-    background-color: #ffffff;
-}
-.comparison-table-section tbody tr:nth-child(even) {
-    background-color: #f7f7f7;
+.modal-header {
+  background-color: #001f5b;
+  color: white;
+  border-bottom: none;
+  padding: 1rem 1.5rem;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
 }
 
-.table-car-image {
-    width: 120px;
-    height: auto;
-    border-radius: 4px;
-    display: block;
-    margin: 0 auto;
+.modal-header .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%);
 }
 
-.close-compare-button-container {
-    text-align: center;
-    margin-top: 20px;
+.modal-title {
+  font-weight: 600;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.modal-body .table-responsive {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.custom-comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.custom-comparison-table thead th {
+  background-color: #001f5b;
+  color: white;
+  padding: 0.75rem;
+  text-align: center;
+  vertical-align: middle;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-color: #495057;
+}
+
+.table-header-car-image {
+  max-height: 70px;
+  border-radius: 4px;
+  display: block;
+  margin: 0 auto 0.5rem auto;
+}
+
+.custom-comparison-table tbody td {
+  border: 1px solid #dee2e6;
+  padding: 0.75rem;
+  vertical-align: middle;
+}
+
+.custom-comparison-table tbody tr:nth-child(even) {
+  background-color: #f8f9fa; 
+}
+.custom-comparison-table tbody tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+.custom-comparison-table td:first-child,
+.custom-comparison-table th:first-child {
+  font-weight: bold;
+  text-align: left;
+  background-color: #fff;
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  border-right: 1px solid #dee2e6;
+}
+
+.custom-comparison-table thead th:first-child {
+    background-color: #001f5b; 
+    z-index: 11;
+}
+
+
+.modal-footer {
+  border-top: 1px solid #dee2e6;
+  padding: 1rem 1.5rem;
+  background-color: #fff;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
 }
 
 @media (max-width: 1024px) {
     .car-item {
         width: calc(50% - 15px);
         min-width: unset;
+    }
+    .modal-dialog.modal-xl {
+      max-width: 95%;
     }
 }
 
@@ -212,17 +274,27 @@
     }
     .product-description,
     .car-model-name,
-    .car-price,
-    .comparison-table-section th,
-    .comparison-table-section td {
+    .car-price {
         font-size: 0.85rem;
     }
     .compare-button, .close-compare-button {
         padding: 10px 20px;
         font-size: 0.9rem;
     }
-    .table-car-image {
-        width: 100px;
+
+    .modal-header, .modal-body, .modal-footer {
+        padding: 1rem;
+    }
+    .modal-title {
+        font-size: 1.1rem;
+    }
+    .custom-comparison-table,
+    .custom-comparison-table thead th,
+    .custom-comparison-table tbody td {
+        font-size: 0.85rem;
+    }
+    .table-header-car-image {
+        max-height: 50px;
     }
 }
 
@@ -244,5 +316,16 @@
     }
     .car-info-icon {
         align-self: flex-end;
+    }
+    .modal-dialog.modal-xl {
+        margin: 0.5rem;
+    }
+    .custom-comparison-table,
+    .custom-comparison-table thead th,
+    .custom-comparison-table tbody td {
+        font-size: 0.8rem;
+    }
+     .table-header-car-image {
+        max-height: 40px;
     }
 }

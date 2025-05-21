@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { CarDetails } from '../interfaces/lancamento';
@@ -21,11 +21,12 @@ const CAR_DATA: CarDetails[] = [
 export class LancamentoComponent implements OnInit {
   availableCars: CarDetails[] = [];
   carsToCompare: CarDetails[] = [];
-  isCompareTableVisible: boolean = false;
+  showComparisonModal: boolean = false;
   maxCompareLimit: number = 2;
 
   comparisonDetails: Array<{ label: string, key: keyof CarDetails, unit?: string }> = [
     { label: 'Modelo', key: 'nome' },
+    { label: 'Preço', key: 'preco', unit: 'R$' },
     { label: 'Altura da caçamba', key: 'alturaCacamba', unit: 'mm' },
     { label: 'Altura do veículo', key: 'alturaVeiculo', unit: 'mm' },
     { label: 'Altura livre do solo', key: 'alturaSolo', unit: 'mm' },
@@ -33,38 +34,28 @@ export class LancamentoComponent implements OnInit {
     { label: 'Motor', key: 'motor' },
     { label: 'Potência', key: 'potencia', unit: 'cv' },
     { label: 'Volume de caçamba', key: 'volumeCacamba', unit: 'L' },
-    { label: 'Roda', key: 'roda' },
-    { label: 'Preço', key: 'preco', unit: 'R$' }
+    { label: 'Roda', key: 'roda' }
   ];
 
   ngOnInit(): void {
     this.availableCars = CAR_DATA.map(car => ({ ...car, selected: false }));
   }
 
-  handleCarSelection(toggledCar: CarDetails): void {
-    const selectedCarsCurrently = this.availableCars.filter(c => c.selected);
-
-    if (toggledCar.selected && selectedCarsCurrently.length > this.maxCompareLimit) {
-      alert(`Você só pode comparar até ${this.maxCompareLimit} carros.`);
-      setTimeout(() => {
-        toggledCar.selected = false;
-        this.carsToCompare = this.availableCars.filter(c => c.selected);
-      }, 0);
-    } else {
-      this.carsToCompare = selectedCarsCurrently;
-    }
+  handleCarSelection(): void {
+    this.carsToCompare = this.availableCars.filter(c => c.selected);
   }
 
-  showComparison(): void {
-    if (this.carsToCompare.length < this.maxCompareLimit) {
-      alert(`Por favor, selecione ${this.maxCompareLimit} veículos para comparar.`);
+  triggerComparisonModal(): void {
+    if (this.carsToCompare.length !== this.maxCompareLimit) {
+      alert(`Por favor, selecione exatamente ${this.maxCompareLimit} veículos para comparar.`);
+      this.showComparisonModal = false;
       return;
     }
-    this.isCompareTableVisible = true;
+    this.showComparisonModal = true;
   }
 
-  hideComparison(): void {
-    this.isCompareTableVisible = false;
+  fecharModalComparacao(): void {
+    this.showComparisonModal = false;
   }
 
   formatImageUrl(imageName: string | undefined): string {

@@ -38,7 +38,8 @@
               class="car-checkbox"
               [id]="'checkbox-' + car.id"
               [(ngModel)]="car.selected"
-              (ngModelChange)="handleCarSelection(car)"
+              (ngModelChange)="handleCarSelection()"
+              [disabled]="carsToCompare.length >= maxCompareLimit && !car.selected"
             />
             <label [for]="'checkbox-' + car.id" class="checkbox-label"></label>
           </div>
@@ -58,59 +59,52 @@
   </section>
 
   <section class="compare-action-section">
-    <button type="button" class="compare-button" (click)="showComparison()">
-      Comparar Carros
+    <button type="button" class="compare-button" (click)="triggerComparisonModal()"
+            [disabled]="carsToCompare.length !== maxCompareLimit">
+      Comparar Carros ({{ carsToCompare.length }}/{{ maxCompareLimit }})
     </button>
   </section>
 
-  <section
-    class="comparison-table-section"
-    *ngIf="isCompareTableVisible && carsToCompare.length === maxCompareLimit"
-  >
-    <div class="comparison-table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>Característica</th>
-            <th>
-              <img
-                [src]="formatImageUrl(carsToCompare[0].image)"
-                [alt]="carsToCompare[0].nome"
-                class="table-car-image"
-              />
-            </th>
-            <th>
-              <img
-                [src]="formatImageUrl(carsToCompare[1].image)"
-                [alt]="carsToCompare[1].nome"
-                class="table-car-image"
-              />
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let detail of comparisonDetails">
-            <td>{{ detail.label }}</td>
-            <td>
-              {{ getCarDetail(carsToCompare[0], detail.key, detail.unit) }}
-            </td>
-            <td>
-              {{ getCarDetail(carsToCompare[1], detail.key, detail.unit) }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="close-compare-button-container">
-        <button
-          type="button"
-          class="close-compare-button"
-          (click)="hideComparison()"
-        >
-          Fechar
-        </button>
+  <div class="modal" tabindex="-1" role="dialog" id="comparisonDetailModal"
+       [ngClass]="{'show d-block': showComparisonModal}"
+       (click)="fecharModalComparacao()">
+    <div class="modal-dialog modal-xl modal-dialog-centered" (click)="$event.stopPropagation()">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="comparisonModalLabel">Comparativo Detalhado</h5>
+          <button type="button" class="btn-close btn-close-white" (click)="fecharModalComparacao()" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div *ngIf="carsToCompare && carsToCompare.length === maxCompareLimit" class="table-responsive">
+            <table class="custom-comparison-table">
+              <thead>
+                <tr>
+                  <th>Característica</th>
+                  <th *ngFor="let car of carsToCompare">
+                    <img [src]="formatImageUrl(car.image)" [alt]="car.nome" class="table-header-car-image" />
+                    <div>{{ car.nome }}</div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let detail of comparisonDetails">
+                  <td>{{ detail.label }}</td>
+                  <td *ngFor="let car of carsToCompare">
+                    {{ getCarDetail(car, detail.key, detail.unit) }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="close-compare-button" (click)="fecharModalComparacao()">Fechar</button>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+
+  <div class="modal-backdrop fade" [ngClass]="{'show': showComparisonModal}" *ngIf="showComparisonModal"></div>
 </main>
 
 <app-footer></app-footer>

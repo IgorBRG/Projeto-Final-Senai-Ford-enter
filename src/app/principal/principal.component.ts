@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-principal',
   standalone: true,
-  imports: [CommonModule, RouterLink, HeaderComponent, FooterComponent,FormsModule],
+  imports: [CommonModule, RouterLink, HeaderComponent, FooterComponent, FormsModule],
   templateUrl: './principal.component.html',
   styleUrls: ['./principal.component.css'],
   animations: [
@@ -35,19 +35,22 @@ export class PrincipalComponent implements OnInit, OnDestroy {
   carouselArr: CarouselItem[] = [
     {
       image: 'imagem_1.jpg',
-      title: 'Esta é a nova Ranger Ford 2022. Verifique novidades.',
+      title: 'Nova Ranger Ford 2022', 
+      subtitle: 'Força, tecnologia e design para qualquer desafio.', 
       url: '/lancamento',
       tooltipText: 'A Nova Ranger 2022 combina força, tecnologia e design sofisticado para enfrentar qualquer desafio, seja na cidade ou no campo.'
     },
     {
       image: 'imagem_2.jpg',
-      title: 'Ford a nossa história',
+      title: 'Ford: Nossa História', 
+      subtitle: 'Inovação e veículos icônicos desde 1903.', 
       url: '/lancamento',
       tooltipText: 'Desde 1903, a Ford tem sido pioneira na indústria automotiva, transformando a maneira como o mundo se move com inovação e veículos icônicos.'
     },
     {
       image: 'imagem_3.jpg',
-      title: 'Nova Ford Bronco Sport 2022',
+      title: 'Nova Ford Bronco Sport', 
+      subtitle: 'Versatilidade e espírito aventureiro.', 
       url: '/lancamento',
       tooltipText: 'Explore todos os terrenos com a versatilidade e o espírito aventureiro da Nova Ford Bronco Sport 2022.'
     }
@@ -57,8 +60,7 @@ export class PrincipalComponent implements OnInit, OnDestroy {
   private intervalId: any;
 
   isImageHovered = false;
-  isTitleHovered = false;
-  showTitleTooltip = false;
+
 
   constructor() {}
 
@@ -78,7 +80,8 @@ export class PrincipalComponent implements OnInit, OnDestroy {
   }
 
   startOrResumeAutoPlay(): void {
-    if (!this.isImageHovered && !this.isTitleHovered) {
+    
+    if (!this.isImageHovered) {
       this.clearAutoPlay();
       this.intervalId = setInterval(() => {
         this.advanceCarousel(true);
@@ -86,7 +89,7 @@ export class PrincipalComponent implements OnInit, OnDestroy {
     }
   }
 
-  startAutoPlay(): void { 
+  startAutoPlay(): void {
     this.clearAutoPlay();
     this.intervalId = setInterval(() => {
       this.advanceCarousel(true);
@@ -119,6 +122,12 @@ export class PrincipalComponent implements OnInit, OnDestroy {
     this.startOrResumeAutoPlay();
   }
 
+  goToItem(index: number): void {
+    this.currentIndex = index;
+    this.setCurrentItem();
+    this.startOrResumeAutoPlay(); 
+  }
+
   getImageUrl(imageName: string | undefined): string {
     if (!imageName) return '';
     return `https://api-ford-enter.onrender.com/img/${imageName}`;
@@ -134,15 +143,5 @@ export class PrincipalComponent implements OnInit, OnDestroy {
     this.startOrResumeAutoPlay();
   }
 
-  onTitleEnter(): void {
-    this.isTitleHovered = true;
-    this.showTitleTooltip = true;
-    this.clearAutoPlay();
-  }
 
-  onTitleLeave(): void {
-    this.isTitleHovered = false;
-    this.showTitleTooltip = false;
-    this.startOrResumeAutoPlay();
-  }
 }

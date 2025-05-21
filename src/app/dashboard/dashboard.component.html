@@ -13,22 +13,22 @@
       </div>
     </div>
 
-    <div *ngIf="selectedVehicleFromSelect" class="row text-center mb-4 g-4">
-      <div class="col-md-4">
+    <div *ngIf="selectedVehicleFromSelect" class="row text-center mb-4 g-3">
+      <div class="col-sm-6 col-md-4">
         <div class="info-card shadow-sm">
           <h6 class="info-card-title">Total de Vendas</h6>
           <h4 class="info-card-value text-primary">{{ selectedVehicleFromSelect.volumetotal }}</h4>
           <small class="info-card-unit">Unid.</small>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-sm-6 col-md-4">
         <div class="info-card shadow-sm">
           <h6 class="info-card-title">Conectados</h6>
           <h4 class="info-card-value text-primary">{{ selectedVehicleFromSelect.connected }}</h4>
           <small class="info-card-unit">Unid.</small>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-sm-12 col-md-4">
         <div class="info-card shadow-sm">
           <h6 class="info-card-title">Atualizações de Software</h6>
           <h4 class="info-card-value text-primary">{{ selectedVehicleFromSelect.softwareUpdates }}</h4>
@@ -42,26 +42,26 @@
     </div>
   </div>
 
-  <div class="fixed-bottom-bar ">
-    <div class="container py-2">
-      <div class="table-responsive">
+  <div class="fixed-bottom-bar">
+    <div class="container-fluid py-2"> 
+      <div class="table-responsive"> 
         <table class="table table-bordered table-hover table-striped text-center align-middle mb-0 data-table">
           <thead class="table-header-azul">
             <tr>
-              <th><i class="bi bi-upc-scan me-1"></i> VIN</th>
-              <th><i class="bi bi-speedometer2 me-1"></i> Odômetro</th>
-              <th><i class="bi bi-fuel-pump-fill me-1"></i> Combustível</th>
-              <th><i class="bi bi-circle-half me-1"></i> Status</th>
-              <th><i class="bi bi-geo-alt-fill me-1"></i> Lat.</th>
-              <th><i class="bi bi-geo-alt-fill me-1"></i> Long.</th>
+              <th><i class="bi bi-upc-scan me-1 d-none d-sm-inline"></i> VIN</th>
+              <th><i class="bi bi-speedometer2 me-1 d-none d-sm-inline"></i> Odômetro</th>
+              <th><i class="bi bi-fuel-pump-fill me-1 d-none d-sm-inline"></i> Combustível</th>
+              <th><i class="bi bi-circle-half me-1 d-none d-sm-inline"></i> Status</th>
+              <th><i class="bi bi-geo-alt-fill me-1 d-none d-sm-inline"></i> Lat.</th>
+              <th><i class="bi bi-geo-alt-fill me-1 d-none d-sm-inline"></i> Long.</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td class="p-2 vin-search-cell">
-                <div class="input-group">
-                  <input [(ngModel)]="searchVin" class="form-control form-control-sm shadow-sm" placeholder="Digite o VIN" />
-                  <button class="btn btn-primary btn-sm" (click)="searchByVin()">Buscar</button>
+                <div class="input-group input-group-sm"> 
+                  <input [(ngModel)]="searchVin" class="form-control shadow-sm" placeholder="Digite o VIN" />
+                  <button class="btn btn-primary" (click)="searchByVin()">Buscar</button> 
                 </div>
               </td>
               <td>
