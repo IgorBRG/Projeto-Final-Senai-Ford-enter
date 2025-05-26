@@ -20,15 +20,12 @@
           <small *ngIf="email.errors?.['email']">E-mail inválido.</small>
         </div>
 
-
         <input type="text" name="cpf" placeholder="CPF*" class="form-input-field"
                [(ngModel)]="contactData.cpf" required #cpf="ngModel"
                mask="000.000.000-00">
         <div *ngIf="cpf.invalid && (cpf.dirty || cpf.touched || isFormSubmitted)" class="validation-error">
           <small *ngIf="cpf.errors?.['required']">CPF é obrigatório.</small>
         </div>
-        
-        
 
         <input type="text" name="sobrenome" placeholder="SOBRENOME*" class="form-input-field"
                [(ngModel)]="contactData.sobrenome" required #sobrenome="ngModel">
@@ -79,3 +76,10 @@
   </div>
 </main>
 <app-footer></app-footer>
+
+<app-custom-modal
+  [isVisible]="showCustomModal"
+  [title]="modalTitle"
+  [message]="modalMessage"
+  (close)="handleModalClose()">
+</app-custom-modal>

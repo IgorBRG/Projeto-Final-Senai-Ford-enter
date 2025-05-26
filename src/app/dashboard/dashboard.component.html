@@ -1,15 +1,16 @@
-<app-sidebar style="background: #f4f6f9;"></app-sidebar>
 <div class="dashboard-content-wrapper">
   <div class="container dashboard-main-container py-3">
 
+<app-sidebar></app-sidebar>
+
     <div class="dashboard-header-zone">
       <h2 class="text-center text-primary mb-3 fw-bold"><i class="bi bi-bar-chart-steps me-2"></i>Dashboard FORD</h2>
-      <p class="text-center text-muted mb-4">
+      <p class="text-center  mb-4">
         Selecione um veículo abaixo para explorar dados de vendas, conectividade e atualizações.
       </p>
       <div class="row justify-content-center">
-        <div class="col-md-8 col-lg-5"> 
-          <label for="selectVehicle" class="form-label fw-semibold visually-hidden">Veículo</label> 
+        <div class="col-md-8 col-lg-5">
+          <label for="selectVehicle" class="form-label fw-semibold visually-hidden">Veículo</label>
           <select id="selectVehicle" [(ngModel)]="selectedId" (change)="onSelectChange()" class="form-select form-select-lg">
             <option [value]="''" disabled selected>Selecione um veículo...</option>
             <option *ngFor="let vehicle of vehicles" [value]="vehicle.id">{{ vehicle.vehicle }}</option>

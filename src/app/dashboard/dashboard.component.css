@@ -17,11 +17,12 @@
   flex-direction: column;
   width: 100%;
   background-color: #f4f6f9;
+  min-height: 100vh;
 }
 
 .dashboard-main-container {
   flex-grow: 1;
-  padding: 4.5rem 1.5rem 100px 1.5rem;
+  padding: 4.5rem 1.5rem 2rem 1.5rem;
   width: 100%;
   box-sizing: border-box;
 }
@@ -38,18 +39,18 @@
 
 .dashboard-header-zone h2 {
   margin-top: 0;
-  margin-bottom: 0.5rem !important;
+  margin-bottom: 0.5rem;
   font-size: 1.6rem;
-  color: #ffffff !important;
+  color: #ffffff;
 }
 .dashboard-header-zone h2 i {
   color: #ffffff;
   font-size: 0.9em;
 }
 .dashboard-header-zone .text-muted {
-  color: #adb5bd !important;
+  color: #adb5bd;
   font-size: 0.9rem;
-  margin-bottom: 1rem !important;
+  margin-bottom: 1rem;
 }
 .dashboard-header-zone .form-label {
   margin-bottom: 0.3rem;
@@ -66,10 +67,10 @@
 
 h2 {
   font-weight: bold;
-  color: #0033a0 !important;
+  color: #0033a0;
   text-align: center;
   margin-top: 1rem;
-  margin-bottom: 2rem !important;
+  margin-bottom: 2rem;
 }
 
 .form-label {
@@ -103,7 +104,7 @@ input.form-control {
 
 .info-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
 }
 
 .info-card-title {
@@ -124,7 +125,7 @@ input.form-control {
 .info-card-value {
   font-size: 2rem;
   font-weight: 700;
-  color: #0033a0 !important;
+  color: #0033a0;
   margin-bottom: 0.25rem;
 }
 
@@ -150,26 +151,18 @@ input.form-control {
   border-radius: 0.25rem;
 }
 
-.fixed-bottom-bar {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1020;
+footer {
   background-color: #e9ecef;
   border-top: 1px solid #ced4da;
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #6c757d;
   box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
-  transition: height 0.2s ease-in-out, padding 0.2s ease-in-out;
+  margin-top: auto;
 }
 
-.fixed-bottom-bar .container {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-  width: 100%;
-  max-width: 100%;
-}
+
 
 .table th, .table td {
   vertical-align: middle;
@@ -188,7 +181,7 @@ input.form-control {
 }
 
 .data-table {
-  margin-bottom: 0 !important;
+  margin-bottom: 0;
 }
 
 .vin-search-cell .input-group {
@@ -207,17 +200,15 @@ input.form-control {
   font-size: 0.85rem;
 }
 
+
+
 @media (max-width: 992px) {
   .dashboard-main-container {
     padding-top: 3.5rem;
-    padding-bottom: 220px;
+    padding-bottom: 2rem;
   }
   .vehicle-image {
     max-height: 220px;
-  }
-  .fixed-bottom-bar .container {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
   }
   .table th, .table td {
     font-size: 0.85rem;
@@ -235,17 +226,10 @@ input.form-control {
 
 @media (max-width: 768px) {
   .dashboard-main-container {
-    padding-top: 3rem;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 200px;
+    padding: 3rem 10px 2rem 10px;
   }
   .vehicle-image {
     max-height: 160px;
-  }
-  .fixed-bottom-bar .container {
-    padding-top: 0.4rem;
-    padding-bottom: 0.4rem;
   }
   .table th, .table td {
     font-size: 0.8rem;
@@ -256,25 +240,20 @@ input.form-control {
   .vin-search-cell .form-control-sm, .vin-search-cell .btn-sm { font-size: 0.75rem; }
   .dashboard-header-zone { padding: 1rem; margin-bottom: 1.25rem; }
   .dashboard-header-zone h2 { font-size: 1.3rem; }
-  .dashboard-header-zone .text-muted { font-size: 0.8rem; margin-bottom: 0.75rem !important; }
+  .dashboard-header-zone .text-muted { font-size: 0.8rem; margin-bottom: 0.75rem; }
   .info-card { margin-bottom: 1rem; padding: 1rem 0.5rem; }
   .info-card-value { font-size: 1.6rem; }
   .info-card-title { font-size: 0.8rem; }
   .data-table { min-width: auto; }
-  .fixed-bottom-bar .container { padding-left: 10px; padding-right: 10px; }
 }
 
 @media (max-width: 576px) {
   .dashboard-main-container {
     padding-top: 2.5rem;
-    padding-bottom: 170px;
+    padding-bottom: 2rem;
   }
   .vehicle-image {
     max-height: 100px;
-  }
-  .fixed-bottom-bar .container {
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
   }
   .table th, .table td {
     font-size: 0.7rem;
@@ -285,15 +264,15 @@ input.form-control {
   .vin-search-cell .form-control-sm, .vin-search-cell .btn-sm {
     font-size: 0.75rem;
     padding: 0.25rem 0.5rem;
-    border-radius: .2rem !important;
+    border-radius: .2rem;
   }
-  .vin-search-cell .form-control-sm { border-right: 1px solid #ced4da !important; }
+  .vin-search-cell .form-control-sm { border-right: 1px solid #ced4da; }
   .vin-search-cell .btn-sm { width: 100%; }
   .dashboard-header-zone { padding: 0.75rem; margin-bottom: 1rem; }
   .dashboard-header-zone h2 { font-size: 1.2rem; }
   .dashboard-header-zone .text-muted { font-size: 0.75rem; }
   .dashboard-header-zone .form-select-lg { font-size: 0.85rem; }
-  h2 { font-size: 1.5rem; margin-bottom: 1.5rem !important; }
+  h2 { font-size: 1.5rem; margin-bottom: 1.5rem; }
   .form-select-lg { font-size: 0.9rem; padding-top: 0.4rem; padding-bottom: 0.4rem; }
   .info-card-value { font-size: 1.4rem; }
   .info-card-title { font-size: 0.75rem; }
